@@ -1,0 +1,8 @@
+transformers==4.52.4
+torch==2.7.1
+moviepy==2.2.1
+python-dotenv==1.1.0
+openai==1.90.0
+numpy==2.0.2
+tqdm==4.67.1
+requests==2.32.4
