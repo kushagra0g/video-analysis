@@ -84,4 +84,4 @@ def extract_audio(video_path):
 
 
 if __name__ == "__main__":
-    print(extract_audio(r"C:\Users\kusagra\Desktop\zorcha\test_videos\v4.mp4"))
+    print(extract_audio(r"/test_videos/v4.mp4"))
