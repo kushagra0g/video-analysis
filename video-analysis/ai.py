@@ -60,9 +60,10 @@ def transcribe(audio_path):
             file=audio_file
         )
         return transcription.text
+
     except Exception as e:
-        logging.error(f" Could not transcribe the given audio.\n{e}")
-        return None
+        logging.error(f"Error occurred while trying to fetch a response from the OpenAI API.")
+        logging.error(f"Error : {e}")
 
 # Analyse the transcript.
 def analyse(transcription, model):
