@@ -2,9 +2,10 @@ from transformers import AutoModelForSpeechSeq2Seq, AutoProcessor, pipeline
 import torch
 import os
 from dotenv import load_dotenv
-from openai import OpenAI
+from openai import OpenAI, OpenAIError, RateLimitError, APIConnectionError, Timeout
 import logging
 
+# Transcribing using the local whisper model.
 def transcribe_local(model_path, aud_path):
     try:
         if torch.cuda.is_available():
@@ -20,8 +21,10 @@ def transcribe_local(model_path, aud_path):
             logging.error("Failed to load model.")
             logging.error(str(e))
             return None
+
         try:
             processor = AutoProcessor.from_pretrained(model_path)
+            logging.info("Successfully loaded the processor")
         except (OSError, ValueError) as e:
             logging.error("Failed to load processor.")
             logging.error(str(e))
@@ -49,7 +52,7 @@ def transcribe_local(model_path, aud_path):
         logging.error(str(E))
         return None
 
-# Transcribing using the OpenAI api.
+# Transcribing using the OpenAI API.
 def transcribe(audio_path):
     load_dotenv()
     client = OpenAI(api_key=os.getenv("openai_key"))
@@ -61,12 +64,25 @@ def transcribe(audio_path):
         )
         return transcription.text
 
+    except RateLimitError as e:
+        logging.error("Rate limit exceeded.")
+        return None
+    except APIConnectionError as e:
+        logging.error("Failed to connect to the OpenAI API")
+        return None
+    except Timeout as e:
+        logging.error("Request to OpenAI API timed out")
+        return None
+    except OpenAIError as e:
+        logging.error("OpenAI API returned an error. "+str(e))
+        return None
     except Exception as e:
-        logging.error(f"Error occurred while trying to fetch a response from the OpenAI API.")
-        logging.error(f"Error : {e}")
+        logging.error("Unexpected error occurred."+str(e))
+        return None
 
-# Analyse the transcript.
+
 def analyse(transcription, model):
+    # Analyses the given transcript
     load_dotenv()
     client = OpenAI(api_key=os.getenv("openai_key"))
     if transcription is None:
