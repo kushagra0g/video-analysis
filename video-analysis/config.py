@@ -1,6 +1,6 @@
 import logging
 
-# Use a local whisper model
+# Use a local model for transcription
 use_local_model = True
 
 # Directory where transcripts will be stored
