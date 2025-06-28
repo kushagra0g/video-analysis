@@ -1,9 +1,0 @@
-
-- exception handling when using openai api
-
-- save transcripts in a folder (path should be added in config) rather
-than creating temp files
-
-- add checks to ensure that paths provided in config exist
-
-- before making analysis api call , make sure to check transcription is not none
