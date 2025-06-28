@@ -1,12 +1,13 @@
-**Video Analysis**
+# Video Analysis
   
-  This project extracts audio from videos, transcribes it using OpenAI Whisper (either through OpenAI API or locally). Then it analyzes the transcript through another GPT API call.
+  This project extracts audio from videos, transcribes it via OpenAI Whisper (either through OpenAI API or locally). It then analyzes the transcript through another GPT API call.
 
-  *Usage :*
+  ## Usage :
+1. Open `config.py` and set the following:
+   - `path_to_video_directory`: path to the folder containing your videos.
+   - `use_local_model`: set to `True` to use a local Whisper model, or `False` to use the OpenAI API.
+   - `path_to_local_model`: path to the downloaded local Whisper model (if using locally).
 
-  in config.py, put the path to the directory containing the videos you want to analyse. You can set the variable use_local_model to switch between using a local Whisper model or the OpenAI
-  API.
-  Create a .env file and put your OpenAI API key.
-
-  To transcribe using the local model, here is the link to the Whisper model. https://huggingface.co/openai/whisper-large-v3
-  After downloading the model, put the path of the directory in config.py
+2. Create a `.env` file and add your OpenAI API key:
+   ```env
+   openai_key=your_api_key_here
