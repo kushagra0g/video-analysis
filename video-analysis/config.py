@@ -1,3 +1,4 @@
+import os
 import logging
 
 # Use a local model for transcription
@@ -6,7 +7,7 @@ use_local_model = True
 # Directory where transcripts will be stored
 path_to_audio_files_directory = ""
 
-# Only needed if use_local_model is enabled
+# Only needed when use_local_model is enabled
 path_to_local_model = ""
 
 path_to_video_directory = ""
@@ -22,6 +23,7 @@ SUPPORTED_VIDEO_EXTENSIONS = [
 ]
 
 def logging_config():
+    os.makedirs(path_to_logging_directory, exist_ok=True)
     logging.basicConfig(level=logging.DEBUG,
                         format="%(asctime)s-%(levelname)s-%(message)s",
                         datefmt="%d/%m/%Y %I:%M:%S %p",
