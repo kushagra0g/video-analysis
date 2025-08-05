@@ -2,6 +2,8 @@
   
   This project extracts audio from videos, transcribes it via OpenAI Whisper (either through OpenAI API or locally). It then analyzes the transcript through another OpenAI API call.
 
+  **NOTE** : This project currently does not support analysing videos which do not convey information through audio. **Any information that is not conveyed through audio will not be analysed.** This is because, the project currently extracts              audio from the video file and then transcribes it. The transcription is then used for further analysis.
+
   ## Usage :
 1. Open `config.py` and set the following:
    - `path_to_video_directory`: path to the folder containing your videos.
