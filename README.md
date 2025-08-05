@@ -1,6 +1,6 @@
 # Video Analysis
   
-  This project extracts audio from videos, transcribes it via OpenAI Whisper (either through OpenAI API or locally). It then analyzes the transcript through another GPT API call.
+  This project extracts audio from videos, transcribes it via OpenAI Whisper (either through OpenAI API or locally). It then analyzes the transcript through another OpenAI API call.
 
   ## Usage :
 1. Open `config.py` and set the following:
